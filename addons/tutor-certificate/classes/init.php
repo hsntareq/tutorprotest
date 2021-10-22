@@ -41,7 +41,7 @@ class init {
 		spl_autoload_register( array( $this, 'loader' ) );
 		$this->certificate = new Certificate();
 
-		add_filter( 'tutor/options/extend/attr', array( $this, 'add_options' ) );
+		add_filter( 'tutor/options/extend/attr', array( $this, 'add_options' ), 10 );
 	}
 
 	/**
@@ -85,14 +85,44 @@ class init {
 
 	public function add_options( $attr ) {
 		$attr['tutor_certificate'] = array(
-            'label'    => __( 'Certificate', 'tutor' ),
+            'label'    => __( 'Certificate', 'tutor-pro' ),
             'slug'     => 'certificate',
             'desc'     => __('Certificate Settings', 'tutor-pro'),
             'template' => 'basic',
-            'icon'     => __( 'filter', 'tutor' ),
+            'icon'     => __( 'filter', 'tutor-pro' ),
             'blocks'   => array(
 				array(
-					'label'      => __( 'Certificate Meta Data', 'tutor' ),
+					'label'	=> __('Certificate Settings', 'tutor-pro'),
+					'slug'       => 'certificate_settings',
+					'block_type' => 'uniform',
+					'fields' => array(
+						array(
+							'key'     => 'tutor_cert_signature_image_id',
+							'type'    => 'upload_full',
+							'label'   => __( 'Upload Signature', 'tutor-pro' ),
+							'default' => tutor()->icon_dir . 'tutor-logo-course-builder.svg',
+							'desc'    => __('Upload a signature that will be printed at certificate', 'tutor-pro'),
+						),
+						array(
+							'key'         => 'tutor_course_certificate_view',
+							'type'        => 'toggle_switch',
+							'default'     => 'off',
+							'label'       => __( 'View Certificate', 'tutor-pro' ),
+							'label_title' => __( 'Enable', 'tutor-pro' ),
+							'desc'        => __( 'By enabling this option, the student will be able to verify and share their certificates URL which is publicly accessible', 'tutor-pro' ),
+						),
+						array(
+							'key'         => 'send_certificate_link_to_course_completion_email',
+							'type'        => 'toggle_switch',
+							'default'     => 'off',
+							'label'       => __( 'Certificate link in course completion email', 'tutor-pro' ),
+							'label_title' => __( 'Enable', 'tutor-pro' ),
+							'desc'        => __( 'Send certificate link along with the course completion email. Student must be logged in to access the certificate if public view is not enabled.', 'tutor-pro' ),
+						),
+					)
+				),
+				array(
+					'label'      => __( 'Old Certificate Template Settings', 'tutor-pro' ),
 					'slug'       => 'certificate_meta',
 					'block_type' => 'uniform',
 					'fields'     => array(
@@ -115,29 +145,6 @@ class init {
 							'label'       => __( 'Show instructor name on certificate', 'tutor-pro' ),
 							'label_title' => __( 'Enable', 'tutor-pro' ),
 							'desc'        => __( 'Show instructor name on certificate before Authorised Name', 'tutor-pro' ),
-						),
-						array(
-							'key'     => 'tutor_cert_signature_image_id',
-							'type'    => 'upload_full',
-							'label'   => __( 'Upload Signature', 'tutor' ),
-							'default' => tutor()->icon_dir . 'tutor-logo-course-builder.svg',
-							'desc'    => __('Upload a signature that will be printed at certificate', 'tutor'),
-						),
-						array(
-							'key'         => 'tutor_course_certificate_view',
-							'type'        => 'toggle_switch',
-							'default'     => 'off',
-							'label'       => __( 'View Certificate', 'tutor-pro' ),
-							'label_title' => __( 'Enable', 'tutor-pro' ),
-							'desc'        => __( 'By enabling this option, the student will be able to verify and share their certificates URL which is publicly accessible', 'tutor-pro' ),
-						),
-						array(
-							'key'         => 'send_certificate_link_to_course_completion_email',
-							'type'        => 'toggle_switch',
-							'default'     => 'off',
-							'label'       => __( 'Certificate link in course completion email', 'tutor-pro' ),
-							'label_title' => __( 'Enable', 'tutor-pro' ),
-							'desc'        => __( 'Send certificate link along with the course completion email. Student must be logged in to access the certificate if public view is not enabled.', 'tutor-pro' ),
 						),
 					),
 				),

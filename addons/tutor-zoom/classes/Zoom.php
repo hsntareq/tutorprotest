@@ -133,12 +133,12 @@ class Zoom {
 	 * @since 1.9.4
 	 */
 	public function register_admin_scripts () {
-		wp_register_script('tutor_zoom_timepicker_js', TUTOR_ZOOM()->url . 'assets/js/jquery-ui-timepicker.js', array('jquery', 'jquery-ui-datepicker', 'jquery-ui-slider'), TUTOR_ZOOM_VERSION, true);
-		wp_register_script('tutor_zoom_admin_js', TUTOR_ZOOM()->url . 'assets/js/admin.js', array('jquery'), tutor_pro()->version, true);
-		wp_register_script('tutor_zoom_common_js', TUTOR_ZOOM()->url . 'assets/js/common.js', array('jquery', 'jquery-ui-datepicker'), tutor_pro()->version, true);
-		wp_register_style('tutor_zoom_timepicker_css', TUTOR_ZOOM()->url . 'assets/css/jquery-ui-timepicker.css', false, TUTOR_ZOOM_VERSION);
-		wp_register_style('tutor_zoom_common_css', TUTOR_ZOOM()->url . 'assets/css/common.css', false, TUTOR_ZOOM_VERSION);
-		wp_register_style('tutor_zoom_admin_css', TUTOR_ZOOM()->url . 'assets/css/admin.css', false, TUTOR_ZOOM_VERSION);	
+		wp_register_script('tutor_zoom_timepicker_js', TUTOR_ZOOM()->url . 'assets/js/jquery-ui-timepicker.js', array('jquery', 'jquery-ui-datepicker', 'jquery-ui-slider'), TUTOR_PRO_VERSION, true);
+		wp_register_script('tutor_zoom_admin_js', TUTOR_ZOOM()->url . 'assets/js/admin.js', array('jquery'), TUTOR_PRO_VERSION, true);
+		wp_register_script('tutor_zoom_common_js', TUTOR_ZOOM()->url . 'assets/js/common.js', array('jquery', 'jquery-ui-datepicker'), TUTOR_PRO_VERSION, true);
+		wp_register_style('tutor_zoom_timepicker_css', TUTOR_ZOOM()->url . 'assets/css/jquery-ui-timepicker.css', false, TUTOR_PRO_VERSION);
+		wp_register_style('tutor_zoom_common_css', TUTOR_ZOOM()->url . 'assets/css/common.css', false, TUTOR_PRO_VERSION);
+		wp_register_style('tutor_zoom_admin_css', TUTOR_ZOOM()->url . 'assets/css/admin.css', false, TUTOR_PRO_VERSION);	
 	}
 	
 	/**
@@ -175,21 +175,21 @@ class Zoom {
 		$is_frontend_course_builder = tutils()->array_get('tutor_dashboard_page', $wp_query->query_vars) === 'create-course';
 
 		if ($wp_query->is_page && $is_frontend_course_builder) {
-			wp_enqueue_script('tutor_zoom_timepicker_js', TUTOR_ZOOM()->url . 'assets/js/jquery-ui-timepicker.js', array('jquery', 'jquery-ui-datepicker', 'jquery-ui-slider'), TUTOR_ZOOM_VERSION, true);
-			wp_enqueue_style('tutor_zoom_timepicker_css', TUTOR_ZOOM()->url . 'assets/css/jquery-ui-timepicker.css', false, TUTOR_ZOOM_VERSION);
-			wp_enqueue_script('tutor_zoom_common_js', TUTOR_ZOOM()->url . 'assets/js/common.js', array('jquery', 'jquery-ui-datepicker'), TUTOR_ZOOM_VERSION, true);
-			wp_enqueue_style('tutor_zoom_common_css', TUTOR_ZOOM()->url . 'assets/css/common.css', false, TUTOR_ZOOM_VERSION);
+			wp_enqueue_script('tutor_zoom_timepicker_js', TUTOR_ZOOM()->url . 'assets/js/jquery-ui-timepicker.js', array('jquery', 'jquery-ui-datepicker', 'jquery-ui-slider'), TUTOR_PRO_VERSION, true);
+			wp_enqueue_style('tutor_zoom_timepicker_css', TUTOR_ZOOM()->url . 'assets/css/jquery-ui-timepicker.css', false, TUTOR_PRO_VERSION);
+			wp_enqueue_script('tutor_zoom_common_js', TUTOR_ZOOM()->url . 'assets/js/common.js', array('jquery', 'jquery-ui-datepicker'), TUTOR_PRO_VERSION, true);
+			wp_enqueue_style('tutor_zoom_common_css', TUTOR_ZOOM()->url . 'assets/css/common.css', false, TUTOR_PRO_VERSION);
 		}
 
 		if (is_single_course() || is_single_tutor_zoom_meeting_page()) {
-			wp_enqueue_script('tutor_zoom_moment_js', TUTOR_ZOOM()->url . 'assets/js/moment.min.js', array(), TUTOR_ZOOM_VERSION, true);
-			wp_enqueue_script('tutor_zoom_moment_tz_js', TUTOR_ZOOM()->url . 'assets/js/moment-timezone-with-data.min.js', array(), TUTOR_ZOOM_VERSION, true);
-			wp_enqueue_script('tutor_zoom_countdown_js', TUTOR_ZOOM()->url . 'assets/js/jquery.countdown.min.js', array('jquery'), TUTOR_ZOOM_VERSION, true);
+			wp_enqueue_script('tutor_zoom_moment_js', TUTOR_ZOOM()->url . 'assets/js/moment.min.js', array(), TUTOR_PRO_VERSION, true);
+			wp_enqueue_script('tutor_zoom_moment_tz_js', TUTOR_ZOOM()->url . 'assets/js/moment-timezone-with-data.min.js', array(), TUTOR_PRO_VERSION, true);
+			wp_enqueue_script('tutor_zoom_countdown_js', TUTOR_ZOOM()->url . 'assets/js/jquery.countdown.min.js', array('jquery'), TUTOR_PRO_VERSION, true);
 		}
 
 		if ( is_single_course() || is_single_tutor_zoom_meeting_page() || $is_frontend_course_builder || ( isset( $wp_query->query_vars['tutor_dashboard_page'] ) && $wp_query->query_vars['tutor_dashboard_page'] == 'zoom' ) ) {
-			wp_enqueue_script('tutor_zoom_frontend_js', TUTOR_ZOOM()->url . 'assets/js/frontend.js', array('jquery'), TUTOR_ZOOM_VERSION, true);
-			wp_enqueue_style('tutor_zoom_frontend_css', TUTOR_ZOOM()->url . 'assets/css/frontend.css', false, TUTOR_ZOOM_VERSION);
+			wp_enqueue_script('tutor_zoom_frontend_js', TUTOR_ZOOM()->url . 'assets/js/frontend.js', array('jquery'), TUTOR_PRO_VERSION, true);
+			wp_enqueue_style('tutor_zoom_frontend_css', TUTOR_ZOOM()->url . 'assets/css/frontend.css', false, TUTOR_PRO_VERSION);
 		}
 	}
 

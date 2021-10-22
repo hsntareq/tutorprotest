@@ -82,7 +82,7 @@ class Assignments {
 
 	public function load_admin_scripts() {
 		if (isset($_GET['page']) && $_GET['page'] == 'tutor-assignments') {
-			wp_enqueue_script('assignment-list-js', tutor_pro()->url . 'addons/tutor-assignments/assets/js/assignment.js', array( 'jquery', 'wp-i18n' ), tutor_pro()->version, true);
+			wp_enqueue_script('assignment-list-js', tutor_pro()->url . 'addons/tutor-assignments/assets/js/assignment.js', array( 'jquery', 'wp-i18n' ), TUTOR_PRO_VERSION, true);
 
 			/**
 			 * @since 1.8.0

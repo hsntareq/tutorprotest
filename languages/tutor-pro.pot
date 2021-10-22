@@ -229,7 +229,7 @@ msgstr ""
 msgid "Tutor assignments is a great way to assign tasks to students."
 msgstr ""
 
-#: addons/tutor-certificate/tutor-certificate.php:29
+#: addons/tutor-certificate/tutor-certificate.php:29, addons/tutor-certificate/classes/init.php:88
 msgid "Certificate"
 msgstr ""
 
@@ -505,7 +505,7 @@ msgstr ""
 msgid "Assign this course to a BuddyPress Group"
 msgstr ""
 
-#: addons/buddypress/classes/BuddyPressGroups.php:55, addons/content-drip/classes/ContentDrip.php:83, addons/tutor-certificate/classes/init.php:116, addons/tutor-certificate/classes/init.php:131, addons/tutor-certificate/classes/init.php:139
+#: addons/buddypress/classes/BuddyPressGroups.php:55, addons/content-drip/classes/ContentDrip.php:83, addons/tutor-certificate/classes/init.php:111, addons/tutor-certificate/classes/init.php:119, addons/tutor-certificate/classes/init.php:146
 msgid "Enable"
 msgstr ""
 
@@ -1087,88 +1087,96 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: addons/tutor-certificate/classes/Certificate.php:73, addons/tutor-certificate/classes/Certificate.php:99
+#: addons/tutor-certificate/classes/Certificate.php:66, addons/tutor-certificate/classes/Certificate.php:92
 msgid "Certificate Template"
 msgstr ""
 
-#: addons/tutor-certificate/classes/Certificate.php:214
+#: addons/tutor-certificate/classes/Certificate.php:207
 msgid "Course not yet completed"
 msgstr ""
 
-#: addons/tutor-certificate/classes/Certificate.php:225
+#: addons/tutor-certificate/classes/Certificate.php:218
 msgid "Certificate Image Error"
 msgstr ""
 
-#: addons/tutor-certificate/classes/Certificate.php:491
+#: addons/tutor-certificate/classes/Certificate.php:495
 msgid "Course Completion Certificate"
 msgstr ""
 
-#: addons/tutor-certificate/classes/Certificate.php:492
+#: addons/tutor-certificate/classes/Certificate.php:496
 msgid "My course completion certificate for"
 msgstr ""
 
-#: addons/tutor-certificate/classes/Certificate.php:516
-msgid "Disable Certificate"
-msgstr ""
-
-#: addons/tutor-certificate/classes/Certificate.php:564
+#: addons/tutor-certificate/classes/Certificate.php:537
 msgid "To view or download certificate please click %s"
 msgstr ""
 
-#: addons/tutor-certificate/classes/init.php:90
+#: addons/tutor-certificate/classes/init.php:90, addons/tutor-certificate/classes/init.php:95
 msgid "Certificate Settings"
 msgstr ""
 
-#: addons/tutor-certificate/classes/init.php:102
-msgid "Authorised Name"
+#: addons/tutor-certificate/classes/init.php:92, addons/tutor-notifications/classes/Tutor_Notifications.php:72
+msgid "filter"
 msgstr ""
 
-#: addons/tutor-certificate/classes/init.php:103
-msgid "Authorised name will be printed under signature."
+#: addons/tutor-certificate/classes/init.php:102, addons/tutor-certificate/views/signature-field.php:14
+msgid "Upload Signature"
 msgstr ""
 
-#: addons/tutor-certificate/classes/init.php:108
-msgid "Authorised Company Name"
+#: addons/tutor-certificate/classes/init.php:104
+msgid "Upload a signature that will be printed at certificate"
 msgstr ""
 
-#: addons/tutor-certificate/classes/init.php:109
-msgid "Authorised company name will be printed under authorised name."
-msgstr ""
-
-#: addons/tutor-certificate/classes/init.php:115
-msgid "Show instructor name on certificate"
-msgstr ""
-
-#: addons/tutor-certificate/classes/init.php:117
-msgid "Show instructor name on certificate before Authorised Name"
-msgstr ""
-
-#: addons/tutor-certificate/classes/init.php:130, addons/tutor-certificate/views/lesson-menu-after.php:31
+#: addons/tutor-certificate/classes/init.php:110, addons/tutor-certificate/views/lesson-menu-after.php:37
 msgid "View Certificate"
 msgstr ""
 
-#: addons/tutor-certificate/classes/init.php:132
+#: addons/tutor-certificate/classes/init.php:112
 msgid "By enabling this option, the student will be able to verify and share their certificates URL which is publicly accessible"
 msgstr ""
 
-#: addons/tutor-certificate/classes/init.php:138
+#: addons/tutor-certificate/classes/init.php:118
 msgid "Certificate link in course completion email"
 msgstr ""
 
-#: addons/tutor-certificate/classes/init.php:140
+#: addons/tutor-certificate/classes/init.php:120
 msgid "Send certificate link along with the course completion email. Student must be logged in to access the certificate if public view is not enabled."
 msgstr ""
 
-#: addons/tutor-certificate/views/lesson-menu-after.php:23
+#: addons/tutor-certificate/classes/init.php:125
+msgid "Old Certificate Template Settings"
+msgstr ""
+
+#: addons/tutor-certificate/classes/init.php:132
+msgid "Authorised Name"
+msgstr ""
+
+#: addons/tutor-certificate/classes/init.php:133
+msgid "Authorised name will be printed under signature."
+msgstr ""
+
+#: addons/tutor-certificate/classes/init.php:138
+msgid "Authorised Company Name"
+msgstr ""
+
+#: addons/tutor-certificate/classes/init.php:139
+msgid "Authorised company name will be printed under authorised name."
+msgstr ""
+
+#: addons/tutor-certificate/classes/init.php:145
+msgid "Show instructor name on certificate"
+msgstr ""
+
+#: addons/tutor-certificate/classes/init.php:147
+msgid "Show instructor name on certificate before Authorised Name"
+msgstr ""
+
+#: addons/tutor-certificate/views/lesson-menu-after.php:29
 msgid "Download Certificate"
 msgstr ""
 
 #: addons/tutor-certificate/views/signature-field.php:4
 msgid "Certificate Signature"
-msgstr ""
-
-#: addons/tutor-certificate/views/signature-field.php:14
-msgid "Upload Signature"
 msgstr ""
 
 #: addons/tutor-certificate/views/signature-field.php:19
@@ -1219,19 +1227,19 @@ msgstr ""
 msgid "Use This"
 msgstr ""
 
-#: addons/tutor-certificate/views/template_metabox.php:28, addons/google-classroom/views/components/class-list.php:85
+#: addons/tutor-certificate/views/template_metabox.php:30, addons/google-classroom/views/components/class-list.php:85
 msgid "Preview"
 msgstr ""
 
-#: addons/tutor-certificate/views/template_metabox.php:40
+#: addons/tutor-certificate/views/template_metabox.php:43
 msgid "Show More"
 msgstr ""
 
-#: addons/tutor-certificate/views/template_metabox.php:54
+#: addons/tutor-certificate/views/template_metabox.php:59
 msgid "Landscape"
 msgstr ""
 
-#: addons/tutor-certificate/views/template_metabox.php:60
+#: addons/tutor-certificate/views/template_metabox.php:65
 msgid "Portrait"
 msgstr ""
 
@@ -2093,10 +2101,6 @@ msgstr ""
 
 #: addons/tutor-notifications/classes/Tutor_Notifications.php:70
 msgid "Notifications Settings"
-msgstr ""
-
-#: addons/tutor-notifications/classes/Tutor_Notifications.php:72
-msgid "filter"
 msgstr ""
 
 #: addons/tutor-notifications/classes/Tutor_Notifications.php:76

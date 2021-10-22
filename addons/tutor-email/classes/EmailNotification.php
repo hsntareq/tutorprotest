@@ -127,7 +127,7 @@ class EmailNotification {
 
 	public function enqueue_email_scripts() {
 		if ( get_request( 'tab_page' ) === 'email_notification' ) {
-			wp_enqueue_script( 'tutor-pro-email-template', tutor_pro()->url . 'addons/tutor-email/assets/js/email_template.js', array( 'jquery' ), tutor_pro()->version, true );
+			wp_enqueue_script( 'tutor-pro-email-template', tutor_pro()->url . 'addons/tutor-email/assets/js/email_template.js', array( 'jquery' ), TUTOR_PRO_VERSION, true );
 		}
 
 	}

@@ -91,13 +91,13 @@ class init{
 		if($gc_dashboard) {
 			wp_enqueue_style('tutor-gc-dashboard-style', TUTOR_GC()->url.'assets/css/classroom-dashboard.css');
 			wp_enqueue_style('tutor-gc-dashboard-bootstrap', TUTOR_GC()->url.'assets/css/bootstrap-grid.min.css');
-			wp_enqueue_script('tutor-gc-dashboard-script', TUTOR_GC()->url.'assets/js/classroom-dashboard.js', array('jquery'), tutor_pro()->version, true);
+			wp_enqueue_script('tutor-gc-dashboard-script', TUTOR_GC()->url.'assets/js/classroom-dashboard.js', array('jquery'), TUTOR_PRO_VERSION, true);
 		}
 	}
 
 	public function load_frontend_script(){
 		wp_enqueue_style('tutor-gc-frontend-style', TUTOR_GC()->url.'assets/css/classroom-frontend.css');
-		wp_enqueue_script('tutor-gc-frontend-js', TUTOR_GC()->url.'assets/js/classroom-frontend.js', array('jquery'), tutor_pro()->version, true);
+		wp_enqueue_script('tutor-gc-frontend-js', TUTOR_GC()->url.'assets/js/classroom-frontend.js', array('jquery'), TUTOR_PRO_VERSION, true);
 	}
 
 	public function register_metabox( $post_type=null, $post=null ){

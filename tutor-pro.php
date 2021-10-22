@@ -4,7 +4,7 @@ Plugin Name: Tutor LMS Pro
 Plugin URI: https://www.themeum.com/product/tutor-lms/
 Description: Power up Tutor LMS plugins by Tutor Pro
 Author: Themeum
-Version: 1.9.11
+Version: 2.0.0
 Author URI: http://themeum.com
 Requires at least: 5.3
 Tested up to: 5.8
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Defined the tutor main file
  */
-define( 'TUTOR_PRO_VERSION', '1.9.11' );
+define( 'TUTOR_PRO_VERSION', '2.0.0' );
 define( 'TUTOR_PRO_FILE', __FILE__ );
 
 /**
@@ -33,6 +33,10 @@ add_action(
 
 if ( ! function_exists( 'tutor_pro' ) ) {
 	function tutor_pro() {
+		if(isset($GLOBALS['tutor_pro_plugin_info'])) {
+			return $GLOBALS['tutor_pro_plugin_info'];
+		}
+
 		$path = plugin_dir_path( TUTOR_PRO_FILE );
 		$info = array(
 			'path'         => $path,
@@ -44,7 +48,8 @@ if ( ! function_exists( 'tutor_pro' ) ) {
 			'nonce'        => '_wpnonce',
 		);
 
-		return (object) $info;
+		$GLOBALS['tutor_pro_plugin_info'] = (object) $info;
+		return $GLOBALS['tutor_pro_plugin_info'];
 	}
 }
 

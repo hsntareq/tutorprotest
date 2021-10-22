@@ -1,5 +1,5 @@
 <div class="tutor-attachments-metabox">
-    <div class="tutor-attachment-cards del-hover-circle tutor-course-builder-attachments">
+    <div class="tutor-attachment-cards tutor-course-builder-attachments">
         <?php
             $attachments = tutor_utils()->get_attachments();
             if (is_array($attachments) && count($attachments)) {

@@ -49,14 +49,14 @@ class Tutor_Calendar {
                 'tutor-pro-calendar', 
                 tutor_pro_calendar()->url . 'assets/js/Calendar.js', 
                 array( ), 
-                tutor_pro()->version,
+                TUTOR_PRO_VERSION,
                 true
             );
             wp_enqueue_style( 
                 'tutor-pro-calendar-css', 
                 tutor_pro_calendar()->url . 'assets/css/calendar.css',
                 '',
-                tutor_pro()->version
+                TUTOR_PRO_VERSION
             );
         }
     }

@@ -10,7 +10,6 @@ class Certificate {
 	private $template;
 	private $certificates_dir_name = 'tutor-certificates';
 	private $certificate_stored_key = 'tutor_certificate_has_image';
-	private $disable_certificate_key = '_tutor_disable_certificate';
 	private $template_meta_key = 'tutor_course_certificate_template';
 	public static $certificate_img_url_base = 'https://preview.tutorlms.com/certificate-templates/';
 
@@ -33,15 +32,6 @@ class Certificate {
 		add_action('wp_enqueue_scripts', array($this, 'load_script'));
 		
 		/**
-		 * Disable certificate feature
-		 * @since v.1.7.0
-		 */
-		add_action('tutor_after_course_sidebar_settings_metabox', array($this, 'disable_certificate_metabox'));
-		add_action('save_post_'. tutor()->course_post_type, array($this, 'save_course_meta'));
-		add_action('save_tutor_course', array($this, 'save_course_meta'));
-
-
-		/**
 		 * Add certificate link to course completion email
 		 * @since v.1.8.2
 		 */
@@ -56,7 +46,10 @@ class Certificate {
 		add_action('tutor/dashboard_course_builder_form_field_after', array($this, 'frontend_course_certificate'), 20);
 		add_action('tutor_save_course', array($this, 'save_certificate_template_meta'));
 	
-		// Certificate builder support
+		/**
+		 * Certificate builder support
+		 * @since v1.9.11
+		 */ 
 		add_filter( 'tutor_certificate_completion_data', array($this, 'completed_course'), 10, 2 );
 		add_filter( 'tutor_certificate_public_url', array($this, 'tutor_certificate_public_url'), 10, 1 );
 		add_filter( 'tutor_certificate_instructor_signature', array($this, 'get_signature_url'), 10, 2 );
@@ -78,8 +71,8 @@ class Certificate {
 
 	public function load_field_scripts() {
 		if(isset($_GET['page']) && $_GET['page']=='tutor_settings') {
-			wp_enqueue_style('tutor-pro-certificate-field-css', TUTOR_CERT()->url.'assets/css/certificate-field.css', array(), tutor_pro()->version);
-			wp_enqueue_script('tutor-pro-certificate-field-js', TUTOR_CERT()->url.'assets/js/certificate-field.js', array('jquery'), tutor_pro()->version, true);
+			wp_enqueue_style('tutor-pro-certificate-field-css', TUTOR_CERT()->url.'assets/css/certificate-field.css', array(), TUTOR_PRO_VERSION);
+			wp_enqueue_script('tutor-pro-certificate-field-js', TUTOR_CERT()->url.'assets/js/certificate-field.js', array('jquery'), TUTOR_PRO_VERSION, true);
 		}
 	}
 
@@ -88,7 +81,7 @@ class Certificate {
 			update_post_meta( $post_id, $this->template_meta_key, sanitize_text_field( $_POST[$this->template_meta_key] ) );
 		}
 	}
-	
+
 	public function frontend_course_certificate($post) {
 		?>
 		<div class="tutor-course-builder-section tutor-course-builder-info">
@@ -401,7 +394,7 @@ class Certificate {
 	}
 
 	public function generate_options($post = null, $course_builder=false) {
-		$templates = $this->templates();
+		$templates = $this->templates(true);
 		$selected_template = tutor_utils()->get_option('certificate_template');
 		$template_field_name = 'tutor_option[certificate_template]';
 		
@@ -417,7 +410,7 @@ class Certificate {
 		include TUTOR_CERT()->path . 'views/' . $template . '.php';
 	}
 
-	public function templates() {
+	public function templates($add_none=false) {
 		$templates = array(
 			'default'       => array('name' => 'Default', 'orientation' => 'landscape'),
 			'template_1'    => array('name' => 'Abstract Landscape', 'orientation' => 'landscape'),
@@ -455,6 +448,17 @@ class Certificate {
 				$filtered[$index]['preview_src'] = $values['url'] . 'preview.png';
 				$filtered[$index]['background_src'] = $values['url'] . 'preview.png';
 			}
+		}
+
+		if($add_none) {
+			$filtered = array_merge(array('none' => array(
+				'name' => 'none', 
+				'orientation' => 'landscape',
+				'path' => '',
+				'url' => '',
+				'preview_src' => TUTOR_CERT()->url.'assets/images/certificate-none.svg' ,
+				'background_src' => '' ,
+			)), $filtered);
 		}
 
 		return $filtered;
@@ -499,37 +503,6 @@ class Certificate {
 				<meta name="twitter:image" content="' . $cert_img . '"/>
 			';
 		});
-	}
-
-	/**
-	 * Disable Certificate Metabox
-	 * @since v.1.7.0
-	 */
-	public function disable_certificate_metabox($post) {
-		$disable_certificate = $this->disable_certificate_key;
-		$disable_certificate_value = get_post_meta($post->ID, $disable_certificate, true);
-		$disable_certificate_checked = ($disable_certificate_value == "yes") ? 'checked="checked"' : '';
-		?>
-		<div class="tutor-course-sidebar-settings-item">
-			<label for="<?php echo $disable_certificate; ?>">
-				<input id="<?php echo $disable_certificate; ?>" type="checkbox" name="<?php echo $disable_certificate; ?>" value="yes" <?php echo $disable_certificate_checked; ?> />
-				<?php _e('Disable Certificate', 'tutor-pro'); ?>
-			</label>
-		</div>
-		<?php
-	}
-
-	/**
-	 * Save course meta for certificate
-	 * @since v.1.7.0
-	 */
-	public function save_course_meta($post_ID) {
-		$additional_data_edit = tutils()->avalue_dot('_tutor_course_additional_data_edit', $_POST);
-		$disable_certificate = $this->disable_certificate_key;
-		if ($additional_data_edit) {
-			$disable_certificate_value = ( isset($_POST[$disable_certificate]) ) ? 'yes' : 'no';
-			update_post_meta($post_ID, $disable_certificate, $disable_certificate_value);
-		}
 	}
 
 	private function get_certificate($course_id, $full=false) {

@@ -889,13 +889,13 @@ class Analytics extends ExportAnalytics {
 					'tutor-pro-line-chart', 
 					TUTOR_REPORT()->url . 'assets/js/Chart.bundle.min.js', 
 					array( ), 
-					tutor_pro()->version 
+					TUTOR_PRO_VERSION 
 				);
 				wp_enqueue_script( 
 					'tutor-pro-analytics', 
 					TUTOR_REPORT()->url . 'assets/js/analytics.js', 
 					array( 'jquery' ), 
-					tutor_pro()->version, 
+					TUTOR_PRO_VERSION, 
 					true 
 				);
 				wp_add_inline_script( 
@@ -910,21 +910,21 @@ class Analytics extends ExportAnalytics {
 						'tutor-pro-jszip', 
 						TUTOR_REPORT()->url . 'assets/js/jszip.min.js', 
 						array( ), 
-						tutor_pro()->version,
+						TUTOR_PRO_VERSION,
 						true
 					);
 					wp_enqueue_script( 
 						'tutor-pro-file-saver', 
 						TUTOR_REPORT()->url . 'assets/js/FileSaver.min.js', 
 						array( 'jquery' ), 
-						tutor_pro()->version, 
+						TUTOR_PRO_VERSION, 
 						true 
 					);
 					wp_enqueue_script( 
 						'tutor-pro-export', 
 						TUTOR_REPORT()->url . 'assets/js/export.js', 
 						array( 'jquery' ), 
-						tutor_pro()->version, 
+						TUTOR_PRO_VERSION, 
 						true 
 					);
 				}				
